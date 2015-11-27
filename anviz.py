@@ -195,12 +195,17 @@ class Device(object):
 
     _connected = False
 
-    def __init__(self, conffile='anviz.ini'):
-        c = ConfigParser()
-        c.read(conffile)
-        self.device_id = c.getint('anviz', 'device_id')
-        self.ip_addr = c.get('anviz', 'ip_addr')
-        self.ip_port = c.getint('anviz', 'ip_port')
+    def __init__(self, conffile='anviz.ini', parameters=None):
+        if not parameters:
+            c = ConfigParser()
+            c.read(conffile)
+            self.device_id = c.getint('anviz', 'device_id')
+            self.ip_addr = c.get('anviz', 'ip_addr')
+            self.ip_port = c.getint('anviz', 'ip_port')
+        else:
+            self.device_id = parameters.get('device_id', 0)
+            self.ip_addr = parameters.get('ip_addr', '192.168.1.30')
+            self.ip_port = parameters.get('ip_port', '5010')
         self._s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def check_connected(self):
@@ -319,4 +324,10 @@ class Device(object):
 
 
 if __name__ == '__main__':
+    # ----- Instance with ini coonfiguration file
     clock = Device()
+    # ----- Instance without ini configuraton file
+    # clock = Device(parameters={'device_id': 1,
+    #                            'ip_addr': '192.168.1.30',
+    #                            'ip_port':5010})
+    import pdb;pdb.set_trace()
