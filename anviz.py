@@ -324,7 +324,7 @@ class Device(object):
 
 
 if __name__ == '__main__':
-    # ----- Instance with ini coonfiguration file
+    # ----- Instance with ini configuration file
     clock = Device()
     # ----- Instance without ini configuraton file
     # clock = Device(parameters={'device_id': 1,
