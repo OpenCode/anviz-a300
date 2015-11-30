@@ -21,7 +21,6 @@ STX = 0xa5
 ACK_sum = 0x80
 SSEC = mktime(datetime.strptime('2015-01-01 00:00:00',
                                 '%Y-%m-%d %H:%M:%S').timetuple())
-print(SSEC)
 
 # return value constants
 RET_SUCCESS         = 0x00 # operation successful
