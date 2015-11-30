@@ -12,13 +12,16 @@ import socket
 import struct
 import itertools
 from datetime import datetime
+from time import mktime
 from collections import namedtuple
 from configparser import ConfigParser
 
 # some constants
 STX = 0xa5
 ACK_sum = 0x80
-SSEC = datetime(2000, 1, 2, 0, 0).timestamp()
+SSEC = mktime(datetime.strptime('2015-01-01 00:00:00',
+                                '%Y-%m-%d %H:%M:%S').timetuple())
+print(SSEC)
 
 # return value constants
 RET_SUCCESS         = 0x00 # operation successful
@@ -330,4 +333,3 @@ if __name__ == '__main__':
     # clock = Device(parameters={'device_id': 1,
     #                            'ip_addr': '192.168.1.30',
     #                            'ip_port':5010})
-    import pdb;pdb.set_trace()
