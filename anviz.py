@@ -332,3 +332,4 @@ if __name__ == '__main__':
     # clock = Device(parameters={'device_id': 1,
     #                            'ip_addr': '192.168.1.30',
     #                            'ip_port':5010})
+    clock.check_connected()
