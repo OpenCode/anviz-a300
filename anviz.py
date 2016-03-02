@@ -2,7 +2,11 @@
     anviz
     ~~~~~
 
-    Write docs here.
+    Anviz device abstraction, communication protocol and commands.
+
+    crc table & algorithm based on:
+    https://github.com/benperiton/anviz-protocol
+
 
     :copyright: (c) 2014 by Augusto Roccasalva
     :license: BSD, see LICENSE for more details.
@@ -19,8 +23,12 @@ from configparser import ConfigParser
 # some constants
 STX = 0xa5
 ACK_sum = 0x80
-SSEC = mktime(datetime.strptime('2000-01-01 00:00:00',
-                                '%Y-%m-%d %H:%M:%S').timetuple())
+
+# SSEC: by http://github.com/montis/Anviz-Protocol-java
+# The documentation says that dates are given as seconds since year 2000
+# However, experience shows that it's actually from the second day of
+# the year 2000
+SSEC = datetime(2000, 1, 2, 0, 0).timestamp()
 
 # return value constants
 RET_SUCCESS         = 0x00 # operation successful
