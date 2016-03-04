@@ -18,7 +18,6 @@ import itertools
 from datetime import datetime
 from time import mktime
 from collections import namedtuple
-from configparser import ConfigParser
 
 # some constants
 STX = 0xa5
@@ -28,7 +27,7 @@ ACK_sum = 0x80
 # The documentation says that dates are given as seconds since year 2000
 # However, experience shows that it's actually from the second day of
 # the year 2000
-SSEC = datetime(2000, 1, 2, 0, 0).timestamp()
+SSEC = 946782000.0 # = datetime(2000, 1, 2, 0, 0).timestamp() in python3
 
 # return value constants
 RET_SUCCESS         = 0x00 # operation successful
@@ -341,3 +340,4 @@ if __name__ == '__main__':
     #                            'ip_addr': '192.168.1.30',
     #                            'ip_port':5010})
     clock.check_connected()
+
